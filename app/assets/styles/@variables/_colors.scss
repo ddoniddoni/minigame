@@ -1,0 +1,19 @@
+@use 'sass:color';
+
+$colors: (
+  'white': #fff,
+  'black': #000,
+  'primary': #2979ff,
+  'basic-bg': #18181d,
+);
+
+:root {
+  --transparent: transparent;
+
+  @each $color, $value in $colors {
+    --#{$color}: #{$value};
+    --#{$color}-rgb:
+      #{color.channel($value, 'red')}, #{color.channel($value, 'green')},
+      #{color.channel($value, 'blue')};
+  }
+}
