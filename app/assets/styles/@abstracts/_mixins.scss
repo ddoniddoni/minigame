@@ -1,0 +1,185 @@
+@use 'sass:math';
+@use 'sass:map';
+@use 'sass:meta';
+
+@use '../@variables' as *;
+@use './functions' as *;
+/*
+	mixins
+*/
+@mixin flex-center {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@mixin txt-hidden {
+  overflow: hidden;
+  display: inline-block;
+  text-indent: -9999px;
+}
+
+@mixin mask-bg-svg($svgURL, $color: '', $svgSize: 'contain') {
+  @if $color != '' {
+    background-color: $color;
+  }
+
+  mask-image: url(#{$svgURL});
+  mask-position: center center;
+  mask-repeat: no-repeat;
+  mask-size: #{$svgSize};
+}
+
+@mixin multiline-truncate($line) {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: #{$line};
+  -webkit-box-orient: vertical;
+  word-break: break-all;
+}
+
+@mixin truncate($width) {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: $width;
+}
+
+/* place holder */
+@mixin placeholder {
+  &::-webkit-input-placeholder {
+    @content;
+  }
+  &:-moz-placeholder {
+    @content;
+  }
+  &::-moz-placeholder {
+    @content;
+  }
+  &:-ms-input-placeholder {
+    @content;
+  }
+}
+
+/* hide scrollbar */
+@mixin hide-scrollbar {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@mixin scrollbars(
+  $size,
+  $foreground-color,
+  $background-color: mix($foreground-color, white, 50%)
+) {
+  // For Google Chrome
+  &::-webkit-scrollbar {
+    width: $size;
+    height: $size;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 3px;
+    background: $foreground-color;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: $background-color;
+  }
+
+  // For Internet Explorer
+  & {
+    scrollbar-face-color: $foreground-color;
+    scrollbar-track-color: $background-color;
+  }
+}
+/* font */
+@mixin font-size($size, $lineHeight: 0, $important: '') {
+  font-size: rem($size);
+  @if $important == '!important' {
+    font-size: rem($size) !important;
+  }
+  @if $lineHeight != 0 {
+    line-height: em($lineHeight, $size);
+  }
+}
+
+@mixin font($size, $weight, $color, $lineHeight: 0) {
+  @include font-size($size, $lineHeight);
+  font-weight: $weight;
+  color: $color;
+}
+
+@mixin transition($args...) {
+  transition: $args;
+}
+
+$breakpoints: (
+  'minimum': (
+    max-width: $break-min,
+  ),
+  'phone': (
+    max-width: #{$break-tablet - 1px},
+  ),
+  'tablet':
+    '(min-width: #{$break-tablet}) and (max-width: #{$break-desktop - 1px})',
+  'tablet-over': (
+    min-width: $break-tablet,
+  ),
+  'mobile': (
+    max-width: #{$break-desktop - 1px},
+  ),
+  'squid': (
+    min-width: $break-squid,
+  ),
+  'desktop': (
+    min-width: $break-desktop,
+  ),
+  'desktop-over': (
+    min-width: $break-desktop-over,
+  ),
+);
+
+/// 반응형 매니저
+/// @access public
+/// @param {String} $breakpoint - 브레이크포인트
+/// @requires $breakpoints
+@mixin respond-to($breakpoint) {
+  $raw-query: map.get($breakpoints, $breakpoint);
+
+  @if $raw-query {
+    $query: if(
+      meta.type-of($raw-query) == 'string',
+      unquote($raw-query),
+      meta.inspect($raw-query)
+    );
+
+    @media only screen and #{$query} {
+      @content;
+    }
+  } @else {
+    @error 'No value found for `#{$breakpoint}`. '
+         + 'Please make sure it is defined in `$breakpoints` map.';
+  }
+}
+
+// @mixin touchscreens-phone() {
+//   @media only screen and (hover: none) and (pointer: coarse) and (max-width: #{$break-tablet - 1px}) {
+//     @content;
+//   }
+// }
+
+// @mixin touchscreens-phone() {
+//   @media only screen and (any-hover: none) and (pointer: coarse) and (max-width: #{$break-tablet - 1px}) {
+//     @content;
+//   }
+// }
+
+@mixin touchscreens-phone() {
+  @media only screen and (max-width: #{$break-tablet - 1px}) and (hover: none), 
+         only screen and (max-width: #{$break-tablet - 1px}) and (pointer: coarse) {
+    @content;
+  }
+}

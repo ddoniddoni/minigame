@@ -1,4 +1,5 @@
-@use 'layout-default' as *;
+@forward 'layout-default';
+@forward 'copyright';
 
 ::-webkit-scrollbar {
   width: 4px;

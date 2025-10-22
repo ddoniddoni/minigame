@@ -1,0 +1,34 @@
+@use 'sass:math';
+
+/*
+	functions
+*/
+
+/* z-index */
+$z-layers: (
+  'modal': 1000,
+  'modaless': 900,
+  'gnb': 800,
+  'dropdown': 500,
+  'hover': 200,
+  'tooltip': 100,
+  'default': 1,
+  'bottomless-pit': -10000,
+);
+
+@function z($layer) {
+  @if not map-has-key($z-layers, $layer) {
+    @warn "No layer found for `#{$layer}` in $z-layers map. Property omitted.";
+  }
+
+  @return map-get($z-layers, $layer);
+}
+
+/* rem */
+@function rem($pixels, $context: 16) {
+  @return #{math.div($pixels, $context)}rem;
+}
+
+@function em($pixels, $context: 16) {
+  @return #{math.div($pixels, $context)}em;
+}

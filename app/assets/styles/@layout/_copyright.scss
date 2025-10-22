@@ -1,0 +1,33 @@
+@use '../@abstracts' as *;
+.copyright {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  height: 60px;
+  text-align: center;
+  background-color: #202026;
+
+  .right {
+    display: block;
+    @include font(13, 400, #ccc);
+
+    > small {
+      font-size: inherit;
+    }
+
+    .seperator {
+      padding-inline: 5px;
+      @include font(13, 400, #3e3e48);
+    }
+  }
+
+  .fair-dealing {
+    @include font(12, 400, #7b7b7b);
+  }
+
+  @include respond-to('mobile') {
+    display: none;
+  }
+}

@@ -1,0 +1,37 @@
+/* variable */
+$font-base-stack: (
+  Pretendard,
+  'Pretendard Variable',
+  // var(--font-pretendard),
+  -apple-system,
+  sans-system-ui,
+  sans-serif
+);
+$font-special-stack: (
+  'Gmarket Sans',
+  Pretendard,
+  'Pretendard Variable',
+  -apple-system,
+  sans-system-ui,
+  sans-serif
+);
+
+$break-min: (320px);
+$break-tablet: (744px);
+$break-squid: (940px);
+$break-desktop: (981px);
+$break-desktop-over: (1121px);
+
+$default-duration: 0.3s;
+$default-easing: cubic-bezier(0.4, 0, 0.2, 1);
+$default-transition: (#{$default-duration} #{$default-easing});
+$default-shadow: (0px 4px 6px 0px rgba(0, 0, 0, 0.09));
+
+:root {
+  --font-base-stack: #{$font-base-stack};
+
+  --default-duration: (0.3s);
+  --default-easing: #{$default-easing};
+  --default-transition: var(--default-duration) var(--default-easing);
+  --default-shadow: (0px 8px 30px rgba(0, 0, 0, 0.1));
+}
