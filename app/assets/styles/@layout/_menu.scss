@@ -1,0 +1,377 @@
+@use '../@variables' as *;
+@use '../@abstracts' as *;
+.menu {
+  overflow: hidden;
+  position: sticky;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: z('gnb');
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 10px 20px 10px;
+  min-height: 68px;
+  width: 100vw;
+  border-bottom: 1px solid #2f2f3a;
+  background: linear-gradient(
+    180deg,
+    #18181d 0%,
+    #18181d 63%,
+    rgba(38, 38, 46, 0.5019607843) 100%
+  );
+  transition: border $default-duration;
+
+  &::before {
+    content: '';
+    opacity: 0;
+    position: absolute;
+    inset: 0;
+    z-index: z('default') - 1;
+    display: block;
+    background: linear-gradient(
+      180deg,
+      #ffffff 0%,
+      #ffffff 79%,
+      rgba(255, 255, 255, 0.7019607843) 100%
+    );
+    transition: opacity $default-duration;
+  }
+
+  @include respond-to('minimum') {
+    gap: 5px;
+  }
+  @include respond-to('desktop') {
+    padding-inline: 30px;
+  }
+
+  // 스크롤
+  &[data-scroll='true'] {
+    border-bottom: 1px solid transparent;
+    &::before {
+      opacity: 1;
+    }
+
+    .mob-navigation-menu {
+      .btn-menu {
+        @include mask-bg-svg('/static/svgs/icon_menu_01.svg', var(--black));
+      }
+    }
+
+    .user-info {
+      color: var(--black);
+      background-color: transparent;
+      .noteBox {
+        .btn-notebox {
+          @include mask-bg-svg(
+            '/static/svgs/icon_notebox_01.svg',
+            var(--black)
+          );
+        }
+      }
+      .my-profile {
+        color: inherit;
+      }
+      .my-balance {
+        color: inherit;
+        small {
+          color: #8e8e8e;
+        }
+      }
+      .my-seed {
+        > .btn-seed {
+          > strong {
+            color: var(--black);
+          }
+          &::before {
+            @include mask-bg-svg('/static/svgs/icon_seed.svg', var(--black));
+          }
+        }
+      }
+
+      .btn-settings {
+        --colorSettings: var(--black);
+      }
+    }
+  }
+
+  .service-logo {
+    position: relative;
+    z-index: z('default');
+    display: none;
+
+    @include respond-to('tablet-over') {
+      display: block;
+    }
+
+    &[data-icon='skycity'] {
+      margin-top: 3px;
+    }
+  }
+
+  .navigation-menu {
+    flex: 1 1;
+    display: none;
+
+    ul {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+
+      @include respond-to('desktop-over') {
+        gap: 25px;
+      }
+
+      > li {
+        position: relative;
+        &.friend-link {
+          .btn-badge {
+            position: absolute;
+            top: -12px;
+            right: -12px;
+            padding-block-end: 1px;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            height: 18px;
+            width: 18px;
+            @include font(12, 700, #ffffff, 15);
+            background-color: #fb2b2b;
+            border-radius: 50%;
+            &[data-none='true'] {
+              display: none;
+            }
+            @include respond-to('desktop') {
+              display: flex;
+            }
+          }
+        }
+      }
+    }
+
+    @include respond-to('desktop') {
+      display: flex;
+    }
+    @include respond-to('desktop-over') {
+      margin-inline-start: 18px;
+    }
+  }
+
+  .user-info {
+    display: flex;
+    margin-inline-start: -20px;
+    @include respond-to('minimum') {
+      margin-inline-start: -5px;
+    }
+    flex: 1;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 0 0 0 46px;
+    background-color: var(--transparent);
+    transform: translateZ(0);
+
+    @include respond-to('tablet') {
+      flex: 1;
+      margin-inline-start: 25px;
+    }
+
+    @include respond-to('desktop') {
+      flex: none;
+      position: unset;
+      display: flex;
+      flex-direction: row;
+      // display: grid;
+      // grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: 20px;
+      width: auto;
+      margin-inline-start: 0px;
+      padding: 0;
+      background-color: transparent;
+    }
+
+    .noteBox {
+      position: relative;
+      display: none;
+      @include respond-to('desktop') {
+        display: block;
+      }
+      .btn-notebox {
+        overflow: hidden;
+        display: none;
+        height: 21px;
+        width: min(29px, 29px);
+        text-indent: -9999px;
+        @include mask-bg-svg('/static/svgs/icon_notebox_01.svg', var(--white));
+        transition: background-color $default-duration;
+        @include respond-to('desktop') {
+          display: block;
+        }
+      }
+      .btn-badge {
+        position: absolute;
+        top: -10px;
+        right: -10px;
+        padding-block-end: 1px;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        height: 22px;
+        width: 22px;
+        @include font(14, 400, #ffffff, 17);
+        background-color: #fb2b2b;
+        border-radius: 50%;
+        &[data-none='true'] {
+          display: none;
+        }
+        @include respond-to('desktop') {
+          display: flex;
+        }
+      }
+    }
+
+    .my-profile {
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      @include font(15, 400, var(--white), 18);
+      gap: 10px;
+      transition: color $default-duration;
+
+      > .avatar {
+        aspect-ratio: 1 / 1;
+        position: absolute;
+        top: calc(50% - 18px);
+        left: 0;
+        display: block;
+        height: 36px;
+        width: min(36px, 36px);
+        opacity: 0;
+        transition: opacity $default-duration 0.5s;
+        &.loaded {
+          opacity: 1;
+        }
+
+        @include respond-to('desktop') {
+          position: static;
+        }
+      }
+
+      .nickname {
+        font-weight: 600;
+      }
+
+      // @include respond-to('phone') {
+      //   .nickname {
+      //     max-width: 100px;
+      //     @include truncate(100%);
+      //   }
+      // }
+
+      @include respond-to('desktop') {
+        overflow: visible;
+
+        &::after {
+          content: '';
+          margin-block-start: -3px;
+          width: 1px;
+          height: 12px;
+          display: inline-block;
+          margin-inline-start: -5px;
+          transform: translate(6px, 2px);
+          background-color: #3a3a43;
+        }
+      }
+    }
+
+    .my-balance {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      @include font(15, 400, #f6c501, 20);
+      transition: color $default-duration;
+
+      strong {
+        font-weight: 700;
+      }
+
+      small {
+        margin-block-start: 2px;
+        @include font(13, 400, #a09774, 16);
+        text-transform: uppercase;
+        transition: color $default-duration;
+      }
+
+      div {
+        button {
+          color: #fff;
+        }
+      }
+    }
+
+    .seed-mobile {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      @media only screen and (max-width: 340px) {
+        gap: 0;
+      }
+      @include respond-to('tablet-over') {
+        gap: 25px;
+      }
+    }
+
+    .my-seed {
+      > .btn-seed {
+        display: flex;
+        align-items: center;
+        > small {
+          margin-block-start: -1px;
+          @include font(17, 400, #7d7d7d);
+        }
+        > strong {
+          @include font(17, 400, var(--white));
+          @include respond-to('minimum') {
+            @include font-size(15);
+          }
+        }
+        &::before {
+          content: '';
+          display: block;
+          inline-size: 16px;
+          block-size: 16px;
+          margin-inline-end: 2px;
+          @include mask-bg-svg('/static/svgs/icon_seed.svg', #ede0aa);
+        }
+      }
+      @include respond-to('desktop') {
+        display: block;
+      }
+    }
+
+    .btn-settings {
+      --colorSettings: var(--white);
+
+      overflow: hidden;
+      display: none;
+      height: 22px;
+      width: min(22px, 22px);
+      text-indent: -9999px;
+      @include mask-bg-svg(
+        '/static/svgs/icon_setting_01.svg',
+        var(--colorSettings)
+      );
+      transition: background-color $default-duration;
+
+      @include respond-to('desktop') {
+        display: block;
+      }
+    }
+  }
+}
