@@ -1,6 +1,7 @@
 @use 'sass:math';
 @use 'sass:map';
 @use 'sass:meta';
+@use 'sass:string';
 
 @use '../@variables' as *;
 @use './functions' as *;
@@ -152,7 +153,7 @@ $breakpoints: (
   @if $raw-query {
     $query: if(
       meta.type-of($raw-query) == 'string',
-      unquote($raw-query),
+      string.unquote($raw-query),
       meta.inspect($raw-query)
     );
 

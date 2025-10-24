@@ -1,0 +1,69 @@
+@keyframes shine {
+  0% {
+    opacity: 1;
+  }
+  40% {
+    opacity: 1;
+  }
+  100% {
+    left: 60%;
+    opacity: 0;
+  }
+}
+
+.game-card {
+  user-select: none;
+  overflow: hidden;
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr auto;
+  border-radius: 8px;
+  border: 1px solid #353535;
+  outline: 2px solid transparent;
+  background-color: #18181d;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.99);
+  transition: all $default-duration;
+  &:hover {
+    z-index: z('default');
+    border-radius: 10px;
+    // border: 1px solid var(--gameActiveBorder);
+    outline: 2px solid var(--gameActiveBorder);
+    // box-shadow: 0 0 8px 8px var(--gameActiveColor);
+    box-shadow: 0 0 22px var(--gameActiveColor);
+    transform: scale(1.07);
+    min-height: 100%;
+    > .room-info {
+      visibility: hidden;
+    }
+    &[data-mobile-device='true'] {
+      > .room-info {
+        // display: none;
+        visibility: visible;
+      }
+    }
+    &[data-quickview='true'] {
+      > .room-info {
+        visibility: visible;
+      }
+    }
+
+    > .room-summary {
+      opacity: 0;
+      &::before {
+        animation: shine $default-duration;
+      }
+    }
+
+    > .room-realtime {
+      opacity: 1;
+    }
+  }
+
+  > .room-summary {
+    grid-column: 1 /2;
+    grid-row: 1 / 2;
+    aspect-ratio: 340 / 180;
+    transition: opacity $default-duration;
+  }
+}

@@ -1,10 +1,6 @@
+@use 'sass:map';
 @use 'sass:math';
 
-/*
-	functions
-*/
-
-/* z-index */
 $z-layers: (
   'modal': 1000,
   'modaless': 900,
@@ -16,19 +12,22 @@ $z-layers: (
   'bottomless-pit': -10000,
 );
 
+// z-index 헬퍼
 @function z($layer) {
-  @if not map-has-key($z-layers, $layer) {
+  @if not map.has-key($z-layers, $layer) {
     @warn "No layer found for `#{$layer}` in $z-layers map. Property omitted.";
+    @return null; // 안전 가드
   }
 
-  @return map-get($z-layers, $layer);
+  @return map.get($z-layers, $layer);
 }
 
-/* rem */
+/* rem 변환 */
 @function rem($pixels, $context: 16) {
   @return #{math.div($pixels, $context)}rem;
 }
 
+/* em 변환 */
 @function em($pixels, $context: 16) {
   @return #{math.div($pixels, $context)}em;
 }
