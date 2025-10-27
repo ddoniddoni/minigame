@@ -1,0 +1,106 @@
+@keyframes ball-spin-fade-loader {
+  50% {
+    opacity: 0.3;
+    -webkit-transform: scale(0.4);
+    transform: scale(0.4);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+}
+
+@keyframes ball-spin-fade-loader {
+  50% {
+    opacity: 0.3;
+    -webkit-transform: scale(0.4);
+    transform: scale(0.4);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+}
+
+.ui-loading {
+  --loading-size: 80px;
+  position: relative;
+  display: inline-flex;
+
+  &.ui-block {
+    display: flex;
+    justify-content: center;
+    width: 100% !important;
+  }
+
+  &[data-size='sm'] {
+    --loading-size: 40px;
+  }
+
+  > .inner {
+    position: relative;
+    top: 0px;
+    left: 0px;
+    display: block;
+    height: var(--loading-size);
+    width: var(--loading-size);
+
+    --ball-size: 20%;
+    --offset-x: 0%;
+    --offset-y: 0%;
+
+    > span {
+      position: absolute;
+      top: calc(50% - var(--ball-size) / 2 + (1 * var(--offset-y)));
+      left: calc(50% - var(--ball-size) / 2 + (1 * var(--offset-x)));
+      height: var(--ball-size);
+      width: var(--ball-size);
+      display: block;
+      border-radius: 100%;
+      -webkit-animation-fill-mode: both;
+      animation-fill-mode: both;
+      background-color: #fefefe;
+
+      &:nth-child(1) {
+        top: auto;
+        bottom: 0;
+        animation: ball-spin-fade-loader 1s -0.96s infinite linear;
+      }
+      &:nth-child(2) {
+        --offset-x: 28%;
+        --offset-y: 28%;
+        animation: ball-spin-fade-loader 1s -0.84s infinite linear;
+      }
+      &:nth-child(3) {
+        left: auto;
+        right: 0;
+        animation: ball-spin-fade-loader 1s -0.72s infinite linear;
+      }
+      &:nth-child(4) {
+        --offset-x: 28%;
+        --offset-y: -28%;
+        animation: ball-spin-fade-loader 1s -0.6s infinite linear;
+      }
+      &:nth-child(5) {
+        top: 0;
+        animation: ball-spin-fade-loader 1s -0.48s infinite linear;
+      }
+      &:nth-child(6) {
+        --offset-x: -28%;
+        --offset-y: -28%;
+        animation: ball-spin-fade-loader 1s -0.36s infinite linear;
+      }
+      &:nth-child(7) {
+        left: 0;
+        animation: ball-spin-fade-loader 1s -0.24s infinite linear;
+      }
+      &:nth-child(8) {
+        --offset-x: -28%;
+        --offset-y: 28%;
+        animation: ball-spin-fade-loader 1s -0.12s infinite linear;
+      }
+    }
+  }
+}

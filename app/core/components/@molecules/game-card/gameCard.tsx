@@ -1,8 +1,13 @@
+import GameInfo from './gameInfo';
+
 export default function GameCard() {
   return (
     <>
       <figure className="game-card">
-        <div className="room-summary">zzzzzzzzz</div>
+        <div className="game-summary">
+          <span className="index" />
+        </div>
+        <GameInfo gamecode="test" />
       </figure>
     </>
   );

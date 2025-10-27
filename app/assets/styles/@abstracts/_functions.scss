@@ -22,12 +22,10 @@ $z-layers: (
   @return map.get($z-layers, $layer);
 }
 
-/* rem 변환 */
 @function rem($pixels, $context: 16) {
   @return #{math.div($pixels, $context)}rem;
 }
 
-/* em 변환 */
 @function em($pixels, $context: 16) {
   @return #{math.div($pixels, $context)}em;
 }

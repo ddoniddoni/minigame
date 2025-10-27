@@ -1,2 +1,195 @@
+@use '../@abstracts' as *;
 .page-lobby {
+  .game-navigation {
+    margin-inline: -20px;
+  }
+  .page-inner-contents {
+    display: flex;
+    flex-direction: column;
+    // margin-block-start: 40px;
+
+    &.page-game-list {
+      flex: 1;
+    }
+
+    .btn-room-view {
+      height: 28px;
+      width: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(180deg, #616161 0%, #000000 100%);
+      border: 1px solid #3d3d3d;
+      border-radius: 5px;
+      &[data-view='list'] {
+        &::before {
+          content: '';
+          display: block;
+          height: 13px;
+          width: 15px;
+          min-width: 15px;
+          @include mask-bg-svg('/static/svgs/icon_list_01.svg', #ffffff);
+        }
+      }
+      &[data-view='grid'] {
+        &::before {
+          content: '';
+          display: block;
+          height: 13px;
+          width: 15px;
+          min-width: 15px;
+          @include mask-bg-svg('/static/svgs/icon_grid_01.svg', #ffffff);
+        }
+      }
+    }
+
+    //
+
+    > header {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+
+      @include respond-to('tablet-over') {
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 0px;
+      }
+
+      .actions {
+        position: relative;
+
+        .inner {
+          display: flex;
+          flex-direction: row;
+          align-items: flex-end;
+          justify-content: space-between;
+
+          .btn-fast-join {
+            // transform: translateY(calc(-100% - 20px));
+            transform: translateY(calc(-100% - 20px)) translateX(calc(-50%));
+          }
+
+          @include respond-to('tablet-over') {
+            gap: 20px;
+
+            .btn-fast-join {
+              position: static;
+              transform: none;
+            }
+          }
+
+          .ui-checkbox {
+            .ui-label {
+              @include respond-to('phone') {
+                @include font-size(14, inherit);
+              }
+            }
+          }
+          .filter-container {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            gap: 10px;
+            @include respond-to('tablet-over') {
+              min-width: 100px;
+              width: auto;
+            }
+            .ui-select-control {
+              width: 100%;
+              @include respond-to('tablet-over') {
+                width: auto;
+              }
+            }
+            .ui-select-control .select-control-container .ui__control {
+              min-width: 90px;
+              width: 100%;
+              @include respond-to('tablet-over') {
+                min-width: 100px;
+                width: auto;
+              }
+            }
+            .select-control-container {
+              width: 100%;
+            }
+          }
+          .status-filter,
+          .decktype-filter,
+          .ante-filter {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 5px;
+
+            .label-status,
+            .label-decktype,
+            .label-ante {
+              min-width: 71px;
+              position: relative;
+              display: flex;
+              align-items: center;
+              gap: 3px;
+              @include font(12, 400, #818181, 15);
+              @include truncate(71px);
+              @include respond-to('tablet-over') {
+                min-width: 109px;
+              }
+              > span {
+                display: block;
+                @include truncate(71px);
+                @include respond-to('tablet-over') {
+                  @include truncate(109px);
+                }
+              }
+
+              &::before {
+                content: '';
+                display: block;
+                height: 14px;
+                width: 14px;
+                min-width: 14px;
+                border-radius: 50%;
+                background-color: #405ca8;
+              }
+              &::after {
+                position: absolute;
+                top: 5px;
+                left: 4px;
+                content: '';
+                display: block;
+                height: 6px;
+                width: 6px;
+                min-width: 6px;
+                @include mask-bg-svg(
+                  '/static/svgs/icon_filter_01.svg',
+                  var(--white)
+                );
+              }
+            }
+          }
+
+          .btn-room-view {
+            display: flex;
+            @include respond-to('phone') {
+              position: absolute;
+              top: 0;
+              right: 0;
+              transform: translateY(calc(-100% - 20px));
+            }
+            @include respond-to('desktop') {
+              display: none;
+            }
+          }
+          .room-view-select-control {
+            display: none;
+            @include respond-to('desktop') {
+              padding: 1px;
+              display: flex;
+            }
+          }
+        }
+      }
+    }
+  }
 }

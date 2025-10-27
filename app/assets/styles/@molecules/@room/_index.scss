@@ -1,3 +1,9 @@
+@forward './game-summary';
+@forward './game-info';
+
+@use '../../@abstracts/' as *;
+@use '../../@variables/' as *;
+
 @keyframes shine {
   0% {
     opacity: 1;
@@ -8,6 +14,62 @@
   100% {
     left: 60%;
     opacity: 0;
+  }
+}
+
+.list-games {
+  &[data-room-view='grid'] {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+    gap: 30px;
+  }
+  &[data-room-view='list'] {
+    display: flex;
+    flex-direction: column;
+    gap: 5px !important;
+  }
+
+  // 모바일 디바이스
+  &[data-mobile-device='true'] {
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    @media (orientation: landscape) {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    > li {
+      container-type: unset;
+    }
+  }
+
+  &.none {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    > li {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      @include font(16, 400, #929292);
+      @include transition(border $default-duration 1s);
+
+      &.none {
+        opacity: 1;
+        visibility: visible;
+        border-top: 1px solid #7b7b7b;
+      }
+    }
+  }
+
+  > li {
+    width: 100px;
+    container-type: inline-size;
+    container-name: roomCardContainer;
   }
 }
 
@@ -33,22 +95,22 @@
     box-shadow: 0 0 22px var(--gameActiveColor);
     transform: scale(1.07);
     min-height: 100%;
-    > .room-info {
+    > .game-info {
       visibility: hidden;
     }
     &[data-mobile-device='true'] {
-      > .room-info {
+      > .game-info {
         // display: none;
         visibility: visible;
       }
     }
     &[data-quickview='true'] {
-      > .room-info {
+      > .game-info {
         visibility: visible;
       }
     }
 
-    > .room-summary {
+    > .game-summary {
       opacity: 0;
       &::before {
         animation: shine $default-duration;
@@ -60,7 +122,7 @@
     }
   }
 
-  > .room-summary {
+  > .game-summary {
     grid-column: 1 /2;
     grid-row: 1 / 2;
     aspect-ratio: 340 / 180;

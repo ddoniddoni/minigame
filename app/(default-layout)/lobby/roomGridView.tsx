@@ -25,7 +25,7 @@ export default function RoomGridView() {
   }, []);
   return (
     <AnimatePresence>
-      <motion.ul className={`list-rooms grid`} data-room-view={'grid'}>
+      <motion.ul className={`list-games`} data-room-view={'grid'}>
         {rooms.length > 0 ? (
           <>
             {rooms.map((item, index) => {
