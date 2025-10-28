@@ -1,0 +1,78 @@
+@use '../@abstracts/' as *;
+
+.page-reaction-game {
+  .reaction-game-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .game-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @include font(64, 700, #fff);
+    @include respond-to('tablet-over') {
+      @include font(48, 700, #fff);
+    }
+    @include respond-to('phone') {
+      @include font(30, 700, #fff);
+    }
+  }
+
+  .message {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @include font(28, 700, #fff);
+    @include respond-to('tablet-over') {
+      @include font(24, 700, #fff);
+    }
+    @include respond-to('phone') {
+      @include font(20, 700, #fff);
+    }
+  }
+  .game-screen {
+    flex: 1;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: center;
+    .reaction-btn {
+      cursor: pointer;
+      flex: 1;
+      margin-block-start: 16px;
+      max-width: 1200px;
+      border-radius: 10px;
+      @include font(32, 600, #fff);
+
+      &.red {
+        background-color: #ef4444;
+        &:hover {
+          background-color: #dc2626;
+        }
+        &:active {
+          background-color: #fb2424;
+        }
+      }
+
+      &.green {
+        background-color: #22c55e;
+        &:hover {
+          background-color: #16a34a;
+        }
+        &:active {
+          background-color: #48ec84;
+        }
+      }
+    }
+  }
+
+  .time {
+    margin-block-start: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @include font(20, 400, #c7c7c7);
+  }
+}
