@@ -4,32 +4,36 @@ import { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import GameCard from '@ui/@molecules/game-card/gameCard';
 
-type Room = {
-  key: number;
+type Game = {
+  id: number;
   gamecode: string;
+  pathname: string;
 };
 
 export default function RoomGridView() {
-  const [rooms, setRooms] = useState<Room[]>([]);
+  const [games, setGames] = useState<Game[]>([]);
   useEffect(() => {
-    setRooms([
+    setGames([
       {
-        key: 0,
+        id: 0,
         gamecode: 'reaction',
+        pathname: 'reaction-game',
       },
       {
-        key: 1,
-        gamecode: 'reaction2',
+        id: 1,
+        gamecode: 'aimtest',
+        pathname: 'aimtest',
       },
     ]);
   }, []);
   return (
     <AnimatePresence>
       <motion.ul className={`list-games`} data-room-view={'grid'}>
-        {rooms.length > 0 ? (
+        {games.length > 0 ? (
           <>
-            {rooms.map((item, index) => {
-              const { key, gamecode } = item;
+            {games.map((item, index) => {
+              const { id, gamecode, pathname } = item;
+              console.log(id, gamecode, pathname);
               return (
                 <motion.li
                   key={`${gamecode}:${index}`}
@@ -39,7 +43,7 @@ export default function RoomGridView() {
                     delay: index * 0.03,
                   }}
                 >
-                  <GameCard />
+                  <GameCard gamecode={gamecode} id={id} pathname={pathname} />
                 </motion.li>
               );
             })}
