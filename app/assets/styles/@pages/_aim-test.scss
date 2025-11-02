@@ -1,0 +1,91 @@
+@use '../@abstracts/' as *;
+
+.page-aimtest {
+  .aimtest-game-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .game-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @include font(64, 700, #fff);
+    @include respond-to('tablet-over') {
+      @include font(48, 700, #fff);
+    }
+    @include respond-to('phone') {
+      @include font(30, 700, #fff);
+    }
+  }
+
+  .btn-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .start-btn {
+      padding: 5px 10px;
+      margin-block-start: 10px;
+      @include font(16, 700, #f1f1f1);
+      background-color: rgb(64, 183, 74);
+      border-radius: 5px;
+    }
+  }
+
+  .message {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @include font(28, 700, #fff);
+    @include respond-to('tablet-over') {
+      @include font(24, 700, #fff);
+    }
+    @include respond-to('phone') {
+      @include font(20, 700, #fff);
+    }
+  }
+  .game-screen {
+    position: relative;
+    flex: 1;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: center;
+    .count {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      @include font(100, 700, #ffffff);
+    }
+  }
+
+  .ball {
+    position: absolute;
+    cursor: pointer;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgb(68, 123, 39);
+    @include font-size(20);
+  }
+  .result {
+    margin-block-start: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    @include font(20, 400, #c7c7c7);
+    .re-btn {
+      padding: 5px 10px;
+      margin-block-start: 10px;
+      @include font(12, 400, #f1f1f1);
+      background-color: rgb(64, 183, 74);
+      border-radius: 5px;
+    }
+  }
+}

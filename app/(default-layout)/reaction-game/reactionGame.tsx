@@ -68,7 +68,7 @@ export default function ReactionGame() {
 
   return (
     <div className="reaction-game-container">
-      <h2 className="game-title">⚡ 반응속도 테스트 ⚡</h2>
+      <h2 className="game-title">⚡ 반응속도 Game ⚡</h2>
 
       {/* 스크린 리더가 메시지 변화를 읽을 수 있게 */}
       <p className="message" aria-live="polite">
