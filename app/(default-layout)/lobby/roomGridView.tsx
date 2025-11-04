@@ -3,10 +3,11 @@ import { useEffect, useState } from 'react';
 
 import { AnimatePresence, motion } from 'framer-motion';
 import GameCard from '@ui/@molecules/game-card/gameCard';
+import { GameCode } from '@ui/types';
 
 type Game = {
   id: number;
-  gamecode: string;
+  gamecode: GameCode;
   pathname: string;
 };
 
@@ -15,12 +16,42 @@ export default function RoomGridView() {
   useEffect(() => {
     setGames([
       {
-        id: 0,
+        id: 1,
         gamecode: 'reaction',
         pathname: 'reaction-game',
       },
       {
+        id: 2,
+        gamecode: 'aimtest',
+        pathname: 'aimtest',
+      },
+      {
         id: 1,
+        gamecode: 'reaction',
+        pathname: 'reaction-game',
+      },
+      {
+        id: 2,
+        gamecode: 'aimtest',
+        pathname: 'aimtest',
+      },
+      {
+        id: 1,
+        gamecode: 'reaction',
+        pathname: 'reaction-game',
+      },
+      {
+        id: 2,
+        gamecode: 'aimtest',
+        pathname: 'aimtest',
+      },
+      {
+        id: 1,
+        gamecode: 'reaction',
+        pathname: 'reaction-game',
+      },
+      {
+        id: 2,
         gamecode: 'aimtest',
         pathname: 'aimtest',
       },
@@ -33,7 +64,6 @@ export default function RoomGridView() {
           <>
             {games.map((item, index) => {
               const { id, gamecode, pathname } = item;
-              console.log(id, gamecode, pathname);
               return (
                 <motion.li
                   key={`${gamecode}:${index}`}

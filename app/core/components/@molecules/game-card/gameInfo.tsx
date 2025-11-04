@@ -1,12 +1,16 @@
+import { GameCode, games } from '../../types';
+
 type GameInfoProps = {
-  gamecode: string;
+  gamecode: GameCode;
 };
 
 export default function GameInfo(props: GameInfoProps) {
+  const { gamecode } = props;
+
   return (
     <figcaption className="game-info">
       <div className="info"></div>
-      <strong className="title">여기는 게임이름</strong>
+      <strong className="title">{games[gamecode]}</strong>
     </figcaption>
   );
 }

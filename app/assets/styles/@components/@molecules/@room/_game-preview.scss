@@ -1,0 +1,18 @@
+.game-card {
+  .game-preview {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    &[data-gamecode='reaction'] {
+      background-image: url('/static/games/preview_reaction.png');
+    }
+    &[data-gamecode='aimtest'] {
+      background-image: url('/static/games/preview_aimtest.png');
+    }
+  }
+}

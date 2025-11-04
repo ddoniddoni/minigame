@@ -1,8 +1,9 @@
 @forward './game-summary';
 @forward './game-info';
+@forward './game-preview';
 
-@use '../../@abstracts/' as *;
-@use '../../@variables/' as *;
+@use '../../../@abstracts/' as *;
+@use '../../../@variables/' as *;
 
 @keyframes shine {
   0% {
@@ -67,7 +68,6 @@
   }
 
   > li {
-    width: 100px;
     container-type: inline-size;
     container-name: roomCardContainer;
   }
@@ -98,17 +98,6 @@
     > .game-info {
       visibility: hidden;
     }
-    &[data-mobile-device='true'] {
-      > .game-info {
-        // display: none;
-        visibility: visible;
-      }
-    }
-    &[data-quickview='true'] {
-      > .game-info {
-        visibility: visible;
-      }
-    }
 
     > .game-summary {
       opacity: 0;
@@ -117,7 +106,7 @@
       }
     }
 
-    > .room-realtime {
+    > .game-preview {
       opacity: 1;
     }
   }
@@ -126,6 +115,10 @@
     grid-column: 1 /2;
     grid-row: 1 / 2;
     aspect-ratio: 340 / 180;
+    transition: opacity $default-duration;
+  }
+  > .game-preview {
+    opacity: 0;
     transition: opacity $default-duration;
   }
 }
