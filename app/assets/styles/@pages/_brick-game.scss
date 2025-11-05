@@ -1,0 +1,132 @@
+@use '../@abstracts/' as *;
+
+.page-brick-game {
+  .brick-game-container {
+    position: relative;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .game-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @include font(64, 700, #fff);
+    @include respond-to('tablet-over') {
+      @include font(48, 700, #fff);
+    }
+    @include respond-to('phone') {
+      @include font(30, 700, #fff);
+    }
+  }
+  .canvas {
+    margin: 0 auto;
+    height: 320px;
+    width: 500px;
+    display: block;
+    background-color: #0b0f1a;
+    border-radius: 12px;
+    box-shadow:
+      0 6px 30px rgba(0, 0, 0, 0.4),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+    @include respond-to('desktop') {
+      min-width: 1200px;
+      min-height: 560px;
+    }
+    @include respond-to('tablet') {
+      min-height: 460px;
+      min-width: 600px;
+    }
+    @include respond-to('phone') {
+      width: 300px;
+      height: 320px;
+    }
+  }
+  .start-info {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 24px;
+    text-align: center;
+    border-radius: 12px;
+    background: rgba(0, 0, 0, 0.45);
+    .start-btn {
+      cursor: pointer;
+      padding: 10px 18px;
+      border-radius: 10px;
+      border: none;
+      background-color: #35c2ff;
+      color: #001019;
+      font-weight: 700;
+    }
+    .start-des {
+      margin-block-start: 12px;
+      @include font(20, 400, #c7c7c7);
+      opacity: 0.7;
+    }
+  }
+  .game-end-info {
+    position: absolute;
+    padding: 24px;
+    inset: 0;
+    gap: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.55);
+    border-radius: 12px;
+    .result {
+      margin-block-end: 10px;
+      @include font(26, 700, #ffffff);
+    }
+    .score {
+      margin-block-end: 18px;
+      opacity: 0.9;
+      @include font(18, 400, #ffffff);
+    }
+    .restart-btn {
+      padding: 10px 18px;
+      border-radius: 10px;
+      border: none;
+      background-color: #35c2ff;
+      @include font(14, 700, #001019);
+    }
+  }
+  .point-info {
+    margin-block-start: 10px;
+    gap: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.9;
+    .point-des {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      .colors {
+        display: inline-block;
+        min-width: 18px;
+        min-height: 12px;
+        border-radius: 3px;
+        &[data-colors='purple'] {
+          background-color: purple;
+        }
+        &[data-colors='green'] {
+          background-color: green;
+        }
+        &[data-colors='yellow'] {
+          background-color: yellow;
+        }
+        &[data-colors='red'] {
+          background-color: red;
+        }
+      }
+      .colors-score {
+        @include font(13, 400, #ffffff);
+      }
+    }
+  }
+}

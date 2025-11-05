@@ -26,34 +26,9 @@ export default function RoomGridView() {
         pathname: 'aimtest',
       },
       {
-        id: 1,
-        gamecode: 'reaction',
-        pathname: 'reaction-game',
-      },
-      {
-        id: 2,
-        gamecode: 'aimtest',
-        pathname: 'aimtest',
-      },
-      {
-        id: 1,
-        gamecode: 'reaction',
-        pathname: 'reaction-game',
-      },
-      {
-        id: 2,
-        gamecode: 'aimtest',
-        pathname: 'aimtest',
-      },
-      {
-        id: 1,
-        gamecode: 'reaction',
-        pathname: 'reaction-game',
-      },
-      {
-        id: 2,
-        gamecode: 'aimtest',
-        pathname: 'aimtest',
+        id: 3,
+        gamecode: 'brickgame',
+        pathname: 'brick-game',
       },
     ]);
   }, []);

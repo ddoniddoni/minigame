@@ -13,6 +13,9 @@
     &[data-gamecode='aimtest'] {
       background-image: url('/static/images/bg_game/aimtest_bg.png');
     }
+    &[data-gamecode='brickgame'] {
+      background-image: url('/static/images/bg_game/brickgame_bg.png');
+    }
     &::before {
       content: '';
       opacity: 0;

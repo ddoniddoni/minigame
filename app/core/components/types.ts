@@ -12,6 +12,7 @@ export type UIControlProps = {
 export const games = {
   reaction: '반응속도 Game',
   aimtest: 'Aim Game',
+  brickgame: '벽돌 Game',
 } as const;
 
 export type GameCode = keyof typeof games;
